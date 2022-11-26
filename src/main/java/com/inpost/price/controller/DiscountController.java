@@ -2,9 +2,9 @@ package com.inpost.price.controller;
 
 
 import com.inpost.price.model.DiscountType;
-import com.inpost.price.service.PriceService;
 import com.inpost.price.model.Product;
 import com.inpost.price.repository.ProductRepository;
+import com.inpost.price.service.PriceService;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Min;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -31,7 +30,7 @@ public class DiscountController {
     public BigDecimal calculateDiscount(
             @RequestParam UUID uuid,
             @RequestParam @Min(0) Integer amount,
-            @RequestParam DiscountType discountType
+            @RequestParam(required = false)  DiscountType discountType
 
             ) {
 

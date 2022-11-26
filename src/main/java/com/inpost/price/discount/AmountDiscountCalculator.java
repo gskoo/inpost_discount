@@ -1,7 +1,6 @@
 package com.inpost.price.discount;
 
 import com.inpost.price.model.Product;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +15,7 @@ public class AmountDiscountCalculator implements DiscountCalculator {
     private BigDecimal factor ;
 
     @Override
-    public BigDecimal getDiscount(Product product, Integer amount) {
+    public BigDecimal getPrice(Product product, Integer amount) {
         BigDecimal percentage = calculatePercentage(amount);
         return product.getPrice()
                 .multiply(BigDecimal.valueOf(amount))

@@ -1,7 +1,6 @@
 package com.inpost.price.discount;
 
 import com.inpost.price.model.Product;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -10,7 +9,8 @@ import java.math.BigDecimal;
 public class NoDiscountCalculator implements DiscountCalculator {
 
     @Override
-    public BigDecimal getDiscount(Product product, Integer amount) {
-        return BigDecimal.ZERO;
+    public BigDecimal getPrice(Product product, Integer amount) {
+        return product.getPrice()
+                .multiply(BigDecimal.valueOf(amount));
     }
 }

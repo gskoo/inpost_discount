@@ -31,7 +31,7 @@ class AmountDiscountTestCalculator {
 
         Product product = new Product(UUID.randomUUID(), new BigDecimal("10"));
 
-        BigDecimal calculatedDiscount = amountDiscount.getDiscount(product, amount);
+        BigDecimal calculatedDiscount = amountDiscount.getPrice(product, amount);
         assertEquals(new BigDecimal(discount), calculatedDiscount);
 
     }

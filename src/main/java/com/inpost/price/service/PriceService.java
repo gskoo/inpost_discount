@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
-import static com.inpost.price.model.DiscountType.*;
-
 
 @Service
 @Slf4j
@@ -24,10 +22,13 @@ public class PriceService {
     private final NoDiscountCalculator noDiscountCalculator;
 
     public BigDecimal calculatePrice(Product product, Integer amount, DiscountType discountType) {
-        return getDiscountCalculator(discountType).getDiscount(product, amount);
+        return getDiscountCalculator(discountType).getPrice(product, amount);
     }
 
     private DiscountCalculator getDiscountCalculator(DiscountType discountType) {
+        if(discountType == null){
+            return noDiscountCalculator;
+        }
         switch (discountType) {
             case AMOUNT -> {
                 return amountDiscountCalculator;

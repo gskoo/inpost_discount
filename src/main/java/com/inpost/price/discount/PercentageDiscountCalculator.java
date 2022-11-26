@@ -12,7 +12,7 @@ public class PercentageDiscountCalculator implements DiscountCalculator {
     BigDecimal percentage;
 
     @Override
-    public BigDecimal getDiscount(Product product, Integer amount) {
+    public BigDecimal getPrice(Product product, Integer amount) {
         return product.getPrice()
                 .multiply(BigDecimal.valueOf(amount))
                 .multiply(percentage);
