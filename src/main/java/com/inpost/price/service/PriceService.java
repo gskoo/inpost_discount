@@ -1,9 +1,6 @@
 package com.inpost.price.service;
 
-import com.inpost.price.discount.AmountDiscountCalculator;
-import com.inpost.price.discount.DiscountCalculator;
-import com.inpost.price.discount.NoDiscountCalculator;
-import com.inpost.price.discount.PercentageDiscountCalculator;
+import com.inpost.price.model.Discount;
 import com.inpost.price.model.DiscountType;
 import com.inpost.price.model.Product;
 import lombok.Data;
@@ -17,30 +14,13 @@ import java.math.BigDecimal;
 @Slf4j
 @Data
 public class PriceService {
-    private final AmountDiscountCalculator amountDiscountCalculator;
-    private final  PercentageDiscountCalculator percentageDiscountCalculator;
-    private final NoDiscountCalculator noDiscountCalculator;
 
-    public BigDecimal calculatePrice(Product product, Integer amount, DiscountType discountType) {
-        return getDiscountCalculator(discountType).getPrice(product, amount);
+    private final DiscountContext discountContext;
+    public Discount calculatePrice(Product product, Integer amount, DiscountType discountType) {
+        return new Discount( discountContext
+                .getDiscountCalculator(discountType)
+                .getPrice(product, amount)
+                .setScale(2));
     }
-
-    private DiscountCalculator getDiscountCalculator(DiscountType discountType) {
-        if(discountType == null){
-            return noDiscountCalculator;
-        }
-        switch (discountType) {
-            case AMOUNT -> {
-                return amountDiscountCalculator;
-            }
-            case PERCENTAGE -> {
-                return percentageDiscountCalculator;
-            }
-            default -> {
-                return noDiscountCalculator;
-            }
-        }
-    }
-
 
 }

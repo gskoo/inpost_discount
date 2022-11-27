@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class AmountDiscountTestCalculator {
+class AmountDiscountCalculatorTest {
 
     static AmountDiscountCalculator amountDiscount;
 
@@ -27,7 +27,7 @@ class AmountDiscountTestCalculator {
 
     @ParameterizedTest
     @MethodSource("provideTestData")
-    void getDiscount(Integer amount, String discount) {
+    void getDiscountTest(Integer amount, String discount) {
 
         Product product = new Product(UUID.randomUUID(), new BigDecimal("10"));
 

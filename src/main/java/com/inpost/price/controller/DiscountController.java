@@ -1,6 +1,7 @@
 package com.inpost.price.controller;
 
 
+import com.inpost.price.model.Discount;
 import com.inpost.price.model.DiscountType;
 import com.inpost.price.model.Product;
 import com.inpost.price.repository.ProductRepository;
@@ -27,10 +28,10 @@ public class DiscountController {
 
 
     @GetMapping(value = "/discount", produces = "application/json")
-    public BigDecimal calculateDiscount(
+    public Discount calculateDiscount(
             @RequestParam UUID uuid,
             @RequestParam @Min(0) Integer amount,
-            @RequestParam(required = false)  DiscountType discountType
+            @RequestParam DiscountType discountType
 
             ) {
 
